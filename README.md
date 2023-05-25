@@ -1,4 +1,9 @@
-### Hi there 👋
+### Hi there 👋 
+
+and welcome to <br/>
+***█▀ █▄█ █▀▀ █░█ █▀▀ █░█***<br/>
+***▄█ ░█░ █▄▄ █▀█ ██▄ ▀▄▀***
+repository <br/>
 
 <!--
 **klich3/klich3** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
