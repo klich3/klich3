@@ -1,5 +1,5 @@
 <div align="center">
 	<a href="#">
-		<img src="sychev.svg" />
+		<img style="width: 100%" src="sychev.svg" />
 	</a>
 </div>
