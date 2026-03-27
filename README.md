@@ -38,6 +38,6 @@
 
 ---
 
-### Cool Tools For Ai 👾
-- [Ai Memory in Markdown](https://github.com/klich3/rocket-store-lcoal-memories-python)
-- [Ai Fast Search in Markdown](https://github.com/klich3/skill-search-in-files-ack)
+### Cool Tools / Skills For Ai 👾
+- [Ai Skill for Memory in Markdown](https://github.com/klich3/rocket-store-lcoal-memories-python)
+- [Ai Skill for Fast Search in Markdown](https://github.com/klich3/skill-search-in-files-ack)
