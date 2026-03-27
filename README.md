@@ -35,3 +35,9 @@
 [linkedin]: https://www.linkedin.com/in/sychevanton/
 [stackoverflow]: https://stackoverflow.com/users/11439276/anton-sychev
 [medium]: https://medium.com/@klich3
+
+---
+
+### Cool Tools For Ai 👾
+- [Ai Memory in Markdown](https://github.com/klich3/rocket-store-lcoal-memories-python)
+- [Ai Fast Search in Markdown](https://github.com/klich3/skill-search-in-files-ack)
