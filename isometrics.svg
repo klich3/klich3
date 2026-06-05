@@ -80,9 +80,9 @@
       g[transform="translate(770, 405)"] rect {
         filter: drop-shadow(0 0 1px var(--cube-shadow));
       }
-      [fill="var(--cube-left)"] { fill: var(--g0-left) !important; }
-      [fill="var(--cube-right)"] { fill: var(--g0-right) !important; }
-      [fill="var(--cube-top)"] { fill: var(--g0-top) !important; }
+      [fill="#0d1117"] { fill: var(--g0-left) !important; }
+      [fill="#57606a"] { fill: var(--g0-right) !important; }
+      [fill="#24292f"] { fill: var(--g0-top) !important; }
       [fill="#082d1b"] { fill: var(--g1-left) !important; }
       [fill="#0a3620"] { fill: var(--g1-right) !important; }
       [fill="#0e4429"] { fill: var(--g1-top) !important; }
@@ -112,54 +112,54 @@
     </style>
 
     <g id="cube-0">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,4.5 0.0,-2.0" fill="#0d1117"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,11.0 11.3,4.5" fill="#10151c"/>
-      <polygon points="0.0,-2.0 11.3,4.5 0.0,11.0 -11.3,4.5" fill="#161b22"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-1.5 0.0,-8.0" fill="#0d1117"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,5.0 11.3,-1.5" fill="#57606a"/>
+      <polygon points="0.0,-8.0 11.3,-1.5 0.0,5.0 -11.3,-1.5" fill="#24292f"/>
     </g>
     <g id="cube-1">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,1.5 0.0,-5.0" fill="#082d1b"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,8.0 11.3,1.5" fill="#0a3620"/>
-      <polygon points="0.0,-5.0 11.3,1.5 0.0,8.0 -11.3,1.5" fill="#0e4429"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-7.5 0.0,-14.0" fill="#082d1b"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-1.0 11.3,-7.5" fill="#0a3620"/>
+      <polygon points="0.0,-14.0 11.3,-7.5 0.0,-1.0 -11.3,-7.5" fill="#0e4429"/>
     </g>
     <g id="cube-2">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-3.5 0.0,-10.0" fill="#004a22"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,3.0 11.3,-3.5" fill="#005929"/>
-      <polygon points="0.0,-10.0 11.3,-3.5 0.0,3.0 -11.3,-3.5" fill="#006d32"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-15.5 0.0,-22.0" fill="#004a22"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-9.0 11.3,-15.5" fill="#005929"/>
+      <polygon points="0.0,-22.0 11.3,-15.5 0.0,-9.0 -11.3,-15.5" fill="#006d32"/>
     </g>
     <g id="cube-3">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-11.5 0.0,-18.0" fill="#1a7530"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,-5.0 11.3,-11.5" fill="#208f3b"/>
-      <polygon points="0.0,-18.0 11.3,-11.5 0.0,-5.0 -11.3,-11.5" fill="#26a641"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-25.5 0.0,-32.0" fill="#1a7530"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-19.0 11.3,-25.5" fill="#208f3b"/>
+      <polygon points="0.0,-32.0 11.3,-25.5 0.0,-19.0 -11.3,-25.5" fill="#26a641"/>
     </g>
     <g id="cube-4">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-21.5 0.0,-28.0" fill="#28a03e"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,-15.0 11.3,-21.5" fill="#31bb47"/>
-      <polygon points="0.0,-28.0 11.3,-21.5 0.0,-15.0 -11.3,-21.5" fill="#39d353"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-37.5 0.0,-44.0" fill="#28a03e"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-31.0 11.3,-37.5" fill="#31bb47"/>
+      <polygon points="0.0,-44.0 11.3,-37.5 0.0,-31.0 -11.3,-37.5" fill="#39d353"/>
     </g>
     <g id="cube-hover-0">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,4.5 0.0,-2.0" fill="#b45309"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,11.0 11.3,4.5" fill="#d97706"/>
-      <polygon points="0.0,-2.0 11.3,4.5 0.0,11.0 -11.3,4.5" fill="#f59e0b"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-1.5 0.0,-8.0" fill="#b45309"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,5.0 11.3,-1.5" fill="#d97706"/>
+      <polygon points="0.0,-8.0 11.3,-1.5 0.0,5.0 -11.3,-1.5" fill="#f59e0b"/>
     </g>
     <g id="cube-hover-1">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,1.5 0.0,-5.0" fill="#b45309"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,8.0 11.3,1.5" fill="#d97706"/>
-      <polygon points="0.0,-5.0 11.3,1.5 0.0,8.0 -11.3,1.5" fill="#f59e0b"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-7.5 0.0,-14.0" fill="#b45309"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-1.0 11.3,-7.5" fill="#d97706"/>
+      <polygon points="0.0,-14.0 11.3,-7.5 0.0,-1.0 -11.3,-7.5" fill="#f59e0b"/>
     </g>
     <g id="cube-hover-2">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-3.5 0.0,-10.0" fill="#b45309"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,3.0 11.3,-3.5" fill="#d97706"/>
-      <polygon points="0.0,-10.0 11.3,-3.5 0.0,3.0 -11.3,-3.5" fill="#f59e0b"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-15.5 0.0,-22.0" fill="#b45309"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-9.0 11.3,-15.5" fill="#d97706"/>
+      <polygon points="0.0,-22.0 11.3,-15.5 0.0,-9.0 -11.3,-15.5" fill="#f59e0b"/>
     </g>
     <g id="cube-hover-3">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-11.5 0.0,-18.0" fill="#b45309"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,-5.0 11.3,-11.5" fill="#d97706"/>
-      <polygon points="0.0,-18.0 11.3,-11.5 0.0,-5.0 -11.3,-11.5" fill="#f59e0b"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-25.5 0.0,-32.0" fill="#b45309"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-19.0 11.3,-25.5" fill="#d97706"/>
+      <polygon points="0.0,-32.0 11.3,-25.5 0.0,-19.0 -11.3,-25.5" fill="#f59e0b"/>
     </g>
     <g id="cube-hover-4">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-21.5 0.0,-28.0" fill="#b45309"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,-15.0 11.3,-21.5" fill="#d97706"/>
-      <polygon points="0.0,-28.0 11.3,-21.5 0.0,-15.0 -11.3,-21.5" fill="#f59e0b"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-37.5 0.0,-44.0" fill="#b45309"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,-31.0 11.3,-37.5" fill="#d97706"/>
+      <polygon points="0.0,-44.0 11.3,-37.5 0.0,-31.0 -11.3,-37.5" fill="#f59e0b"/>
     </g>
   </defs>
 
