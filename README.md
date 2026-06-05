@@ -4,7 +4,7 @@
 	</a>
 </div>
 
-<img style="width: 100%" src="isometrics.svg" />
+<img style="width: 100%" src="isometrics.svg" style="cursor: default;" />
 
 ### 🤝 Connect with me
 
