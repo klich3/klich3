@@ -4,7 +4,7 @@
 	</a>
 </div>
 
-<iframe src="isometric-heatmap.html" width="100%" height="700" />
+<img style="width: 100%" src="isometrics.svg" />
 
 ### 🤝 Connect with me
 
