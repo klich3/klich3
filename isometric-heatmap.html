@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Isometric Contribution Heatmap</title>
+		<style>
+			/* ══ TOKENS ══════════════════════════════════════════════════════════ */
+			:root {
+				--bg: #0d1117;
+				--surface: #161b22;
+				--border: #21262d;
+				--text: #e6edf3;
+				--text-muted: #7d8590;
+
+				--g0-top: #161b22;
+				--g0-l: #0d1117;
+				--g0-r: #10151c;
+				--g1-top: #0e4429;
+				--g1-l: #082d1b;
+				--g1-r: #0a3620;
+				--g2-top: #006d32;
+				--g2-l: #004a22;
+				--g2-r: #005929;
+				--g3-top: #26a641;
+				--g3-l: #1a7530;
+				--g3-r: #208f3b;
+				--g4-top: #39d353;
+				--g4-l: #28a03e;
+				--g4-r: #31bb47;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family:
+					-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem 1rem;
+			}
+
+			/* ══ CARD ═════════════════════════════════════════════════════════════ */
+			.card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 10px;
+				padding: 1.75rem 2rem;
+				width: 100%;
+				max-width: 960px;
+			}
+
+			/* ══ STATS ════════════════════════════════════════════════════════════ */
+			.stats {
+				display: flex;
+				gap: 0;
+				margin-bottom: 1.5rem;
+				justify-content: flex-start;
+				flex-wrap: wrap;
+				row-gap: 1rem;
+			}
+			.stat {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				padding: 0 1.75rem;
+				border-left: 1px solid var(--border);
+			}
+			.stat:first-child {
+				border-left: none;
+				padding-left: 0;
+			}
+			.stat-label {
+				font-size: 11px;
+				color: var(--text-muted);
+				margin-bottom: 2px;
+				letter-spacing: 0.03em;
+			}
+			.stat-num {
+				font-size: 30px;
+				font-weight: 700;
+				color: #39d353;
+				line-height: 1;
+			}
+			.stat-sub {
+				font-size: 11px;
+				color: var(--text-muted);
+				margin-top: 2px;
+			}
+
+			/* ══ ISO VIEWPORT ═════════════════════════════════════════════════════ */
+			.iso-viewport {
+				width: 100%;
+				overflow: visible;
+				display: flex;
+				justify-content: center;
+				/* Shift down so the raised blocks don't clip */
+				padding-bottom: 10px;
+			}
+
+			/* The flat grid that gets isometrically transformed */
+			.iso-grid {
+				display: grid;
+				grid-template-columns: repeat(52, 13px);
+				grid-template-rows: repeat(7, 13px);
+				gap: 2px;
+				transform: rotateX(55deg) rotateZ(-45deg);
+				transform-style: preserve-3d;
+				transform-origin: center center;
+			}
+
+			/* ══ CELL & CUBE ══════════════════════════════════════════════════════ */
+			.cell {
+				position: relative;
+				width: 13px;
+				height: 13px;
+				transform-style: preserve-3d;
+			}
+			.cell:hover .cube {
+				transform: translateZ(5px);
+			}
+
+			/*
+  Pure CSS cube: 6 faces. In isometric view (rotateX55 rotateZ-45)
+  we only see: top, front-right, front-left
+*/
+			.cube {
+				position: absolute;
+				inset: 0;
+				transform-style: preserve-3d;
+				transition: transform 0.15s ease;
+			}
+
+			/* Each face is a 13×13px square positioned in 3D space */
+			.f {
+				position: absolute;
+				width: 13px;
+				height: 13px;
+			}
+
+			/* TOP face  — sits at Z = height */
+			.f-top {
+				background: var(--ct);
+				transform: translateZ(var(--hz));
+				border-radius: 1.5px;
+			}
+
+			/* FRONT face — faces -Y → visible as lower-left in iso */
+			.f-front {
+				background: var(--cl);
+				transform: rotateX(-90deg) translateZ(13px);
+				transform-origin: bottom center;
+				/* Height = from 0 to hz; use scaleY */
+				height: var(--hz);
+				top: calc(13px - var(--hz));
+				width: 13px;
+			}
+
+			/* RIGHT face — faces +X → visible as lower-right in iso */
+			.f-right {
+				background: var(--cr);
+				transform: rotateY(90deg) translateZ(0px);
+				transform-origin: left center;
+				height: var(--hz);
+				top: calc(13px - var(--hz));
+				left: 13px;
+				width: var(--hz);
+			}
+
+			/* Base/bottom face (optional, hidden in iso but keeps cube solid) */
+			.f-base {
+				background: var(--cb);
+				transform: translateZ(0px);
+			}
+
+			/* ══ LEGEND ═══════════════════════════════════════════════════════════ */
+			.bottom-row {
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				gap: 6px;
+				margin-top: 1.2rem;
+			}
+			.bottom-row .lbl {
+				font-size: 11px;
+				color: var(--text-muted);
+			}
+			.lbox {
+				width: 11px;
+				height: 11px;
+				border-radius: 2px;
+				transition: transform 0.15s;
+			}
+			.lbox:hover {
+				transform: scale(1.3);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card">
+			<!-- Stats header -->
+			<div class="stats">
+				<div class="stat">
+					<span class="stat-label" id="labelYears">—</span>
+					<span class="stat-num" id="sTotal">—</span>
+					<span class="stat-sub" id="dateRange">—</span>
+				</div>
+			</div>
+
+			<!-- Isometric grid -->
+			<div class="iso-viewport">
+				<div class="iso-grid" id="grid"></div>
+			</div>
+
+			<!-- Legend -->
+			<div class="bottom-row">
+				<span class="lbl">Less</span>
+				<div
+					class="lbox"
+					style="background: #161b22; border: 1px solid #30363d"
+				></div>
+				<div class="lbox" style="background: #0e4429"></div>
+				<div class="lbox" style="background: #006d32"></div>
+				<div class="lbox" style="background: #26a641"></div>
+				<div class="lbox" style="background: #39d353"></div>
+				<span class="lbl">More</span>
+			</div>
+		</div>
+
+		<script>
+			/* ── Configuration ─────────────────────────────────────────────────── */
+			const START_YEAR = 1996;
+			const startDate = new Date(START_YEAR, 0, 1); // Jan 1, 1996
+			const today = new Date();
+			const totalYears = today.getFullYear() - START_YEAR;
+
+			/* ── Seeded PRNG ──────────────────────────────────────────────────── */
+			function seededRng(seed) {
+				let s = seed;
+				return () => {
+					s = (s * 16807 + 0) % 2147483647;
+					return (s - 1) / 2147483646;
+				};
+			}
+			const rand = seededRng(42);
+
+			/* ── Generate contribution data ──────────────────────────────────── */
+			const WEEKS = 52,
+				DAYS = 7;
+			const data = []; // data[w][d]
+
+			for (let w = 0; w < WEEKS; w++) {
+				data[w] = [];
+				for (let d = 0; d < DAYS; d++) {
+					const isWeekend = d === 0 || d === 6;
+					let base = isWeekend ? rand() * 2 : 1 + rand() * 5;
+
+					// Active burst periods
+					if (w >= 4 && w <= 6) base += 3; // late Nov
+					if (w >= 14 && w <= 18) base += 5; // Mar peak
+					if (w >= 22 && w <= 25) base += 3; // May bump
+					if (w >= 36 && w <= 39) base += 2; // Sep activity
+
+					const v = Math.max(0, Math.round(base + (rand() - 0.5) * 3));
+					data[w][d] = Math.min(v, 16);
+				}
+			}
+
+			// Force the reference busiest day: ~week 17 (Mar 27), Monday
+			data[17][1] = 53;
+
+			/* ── Stats ───────────────────────────────────────────────────────── */
+			const flat = data.flat();
+			const total = flat.reduce((a, b) => a + b, 0);
+
+			document.getElementById("labelYears").textContent =
+				`${totalYears} year${totalYears !== 1 ? "s" : ""} total`;
+			document.getElementById("dateRange").textContent =
+				`${startDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} — ${today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`;
+			document.getElementById("sTotal").textContent = total.toLocaleString();
+
+			/* ── Color levels ────────────────────────────────────────────────── */
+			const LEVELS = [
+				{ top: "#161b22", l: "#0d1117", r: "#10151c", b: "#090c10", hz: "2px" },
+				{ top: "#0e4429", l: "#082d1b", r: "#0a3620", b: "#060f09", hz: "5px" },
+				{
+					top: "#006d32",
+					l: "#004a22",
+					r: "#005929",
+					b: "#003018",
+					hz: "10px",
+				},
+				{
+					top: "#26a641",
+					l: "#1a7530",
+					r: "#208f3b",
+					b: "#125022",
+					hz: "18px",
+				},
+				{
+					top: "#39d353",
+					l: "#28a03e",
+					r: "#31bb47",
+					b: "#1c6e2c",
+					hz: "28px",
+				},
+			];
+
+			function lvl(v) {
+				if (v === 0) return 0;
+				if (v <= 2) return 1;
+				if (v <= 6) return 2;
+				if (v <= 12) return 3;
+				return 4;
+			}
+
+			/* ── Build DOM ───────────────────────────────────────────────────── */
+			const gridEl = document.getElementById("grid");
+
+			const MONTH_NAMES = [
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
+			];
+			function weekDayLabel(w, d) {
+				const base = new Date(START_YEAR, 0, 1);
+				base.setDate(base.getDate() + w * 7 + d);
+				return `${MONTH_NAMES[base.getMonth()]} ${base.getDate()}`;
+			}
+
+			for (let w = 0; w < WEEKS; w++) {
+				for (let d = 0; d < DAYS; d++) {
+					const v = data[w][d];
+					const L = LEVELS[lvl(v)];
+
+					const cell = document.createElement("div");
+					cell.className = "cell";
+					cell.style.gridColumn = w + 1;
+					cell.style.gridRow = d + 1;
+					if (v > 0) {
+						const label = weekDayLabel(w, d);
+						cell.title = `${v} contribution${v !== 1 ? "s" : ""} — ${label}`;
+						cell.setAttribute("aria-label", `${v} contributions on ${label}`);
+					}
+
+					const cube = document.createElement("div");
+					cube.className = "cube";
+					cube.style.setProperty("--ct", L.top);
+					cube.style.setProperty("--cl", L.l);
+					cube.style.setProperty("--cr", L.r);
+					cube.style.setProperty("--cb", L.b);
+					cube.style.setProperty("--hz", L.hz);
+
+					["f-base", "f-front", "f-right", "f-top"].forEach((cls) => {
+						const f = document.createElement("div");
+						f.className = `f ${cls}`;
+						cube.appendChild(f);
+					});
+
+					cell.appendChild(cube);
+					gridEl.appendChild(cell);
+				}
+			}
+		</script>
+	</body>
+</html>
