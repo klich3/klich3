@@ -80,9 +80,9 @@
       g[transform="translate(770, 405)"] rect {
         filter: drop-shadow(0 0 1px var(--cube-shadow));
       }
-      [fill="#0d1117"] { fill: var(--g0-left) !important; }
-      [fill="#57606a"] { fill: var(--g0-right) !important; }
-      [fill="#24292f"] { fill: var(--g0-top) !important; }
+      [fill="#b7c0ca"] { fill: var(--g0-left) !important; }
+      [fill="#d0d7de"] { fill: var(--g0-right) !important; }
+      [fill="#f0f6fc"] { fill: var(--g0-top) !important; }
       [fill="#082d1b"] { fill: var(--g1-left) !important; }
       [fill="#0a3620"] { fill: var(--g1-right) !important; }
       [fill="#0e4429"] { fill: var(--g1-top) !important; }
@@ -112,9 +112,9 @@
     </style>
 
     <g id="cube-0">
-      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-1.5 0.0,-8.0" fill="#0d1117"/>
-      <polygon points="11.3,6.5 0.0,13.0 0.0,5.0 11.3,-1.5" fill="#57606a"/>
-      <polygon points="0.0,-8.0 11.3,-1.5 0.0,5.0 -11.3,-1.5" fill="#24292f"/>
+      <polygon points="0.0,0.0 -11.3,6.5 -11.3,-1.5 0.0,-8.0" fill="#b7c0ca"/>
+      <polygon points="11.3,6.5 0.0,13.0 0.0,5.0 11.3,-1.5" fill="#d0d7de"/>
+      <polygon points="0.0,-8.0 11.3,-1.5 0.0,5.0 -11.3,-1.5" fill="#f0f6fc"/>
     </g>
     <g id="cube-1">
       <polygon points="0.0,0.0 -11.3,6.5 -11.3,-7.5 0.0,-14.0" fill="#082d1b"/>
